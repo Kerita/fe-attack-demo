@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>extend</title>
+</head>
+
+<body>
+	<script>
+		function Person(name) {
+			this.name = name
+		}
+		const lily = new Person('丽丽')
+		console.log(lily.__proto__ === Person.prototype)
+
+		const kitty = {}
+		kitty.__proto__ = Person.prototype
+		Person.call(kitty, '凯特')
+		console.log(kitty.name)
+
+		console.log(Person.__proto__ === Person.prototype)
+		console.log(Person.__proto__)
+		console.log(Person.prototype)
+	</script>
+</body>
+
+</html>
