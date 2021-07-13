@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ajax</title>
+</head>
+
+<body>
+	<script>
+		function request(option) {
+			const xhr = new XMLHttpRequest()
+
+			xhr.onreadystatechange = () => {
+				if (xhr.readyState === 4) {
+					if (xhr.status === 200) {
+						if (option.success && typeof option.success === 'function') {
+							option.success(xhr.response)
+						}
+					} else {
+						if (option.error && typeof option.error === 'function') {
+							option.error(xhr.response)
+						}
+					}
+				}
+			}
+
+			xhr.open(option.method, option.url, true)
+
+			if (xhr.method === 'post') {
+				xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
+			}
+
+			xhr.send(xhr.method === 'post' ? option.data : null)
+		}
+
+		request({
+			url: 'https://openapi.insta360.com/store/meta/home/listItems?X-Language=zh_cn&X-Country=CN',
+			method: 'get',
+			success: res => console.log(res)
+		})
+	</script>
+</body>
+
+</html>
