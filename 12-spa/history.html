@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>history API</title>
+	<style>
+		div {
+			width: 100px;
+			margin-bottom: 10px;
+			border: 1px solid #ccc;
+			cursor: pointer;
+		}
+	</style>
+	<script>
+		function back() {
+			console.log('back')
+			history.back()
+		}
+
+		function push() {
+			console.log('push')
+			history.pushState({}, '', 'push.html')
+		}
+
+		function replace() {
+			console.log('replace')
+			history.replaceState({}, '', 'replace.html')
+		}
+
+		function go() {
+			console.log('refresh')
+			history.go(0)
+		}
+
+		function forward() {
+			console.log('forward')
+			history.forward()
+		}
+
+		window.addEventListener('popstate', (e) => {
+			console.log(e)
+		})
+	</script>
+</head>
+
+<body>
+	<div onclick="push()">push</div>
+	<div onclick="replace()">replace</div>
+	<div onclick="back()">back</div>
+	<div onclick="go()">go</div>
+	<div onclick="forward()">forward</div>
+</body>
+
+</html>
